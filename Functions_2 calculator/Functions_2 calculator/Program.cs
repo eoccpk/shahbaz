@@ -8,15 +8,11 @@ namespace Functions_2_calculator
 {
     internal class Program
     {
-        private static string again;
+       
 
         static void Main(string[] args)
         {
             double result = 0;
-           
-            do
-            {
-                char again;
                 Console.WriteLine("enter the first number");
                 double a = double.Parse(Console.ReadLine());
                 Console.WriteLine("enter the second number");
@@ -52,13 +48,7 @@ namespace Functions_2_calculator
                         break;
 
                 }
-                Console.ReadKey();
-                Console.WriteLine("do you want to run again");
-                again = char.Parse(Console.ReadLine());
-
-            } while (again == "Y" || again == "y");
-            
-
+                  Console.ReadKey();
         }
         static double add(double a, double b) => a + b;
         static double subs(double a, double b) => a - b;
