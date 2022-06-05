@@ -10,13 +10,12 @@ namespace d0_while
     {
         static void Main(string[] args)
         {
-            int i = 0;
-            do
+            for(int i=0; i < 10; i++)
             {
+                if (i == 5)
+                    continue;
                 Console.WriteLine(i);
-                i++;
             }
-            while (i < 12);
             Console.ReadKey();
         }
     }
