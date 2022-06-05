@@ -10,11 +10,21 @@ namespace d0_while
     {
         static void Main(string[] args)
         {
-            for(int i=0; i < 10; i++)
+            double marks;
+            string name;
+            int roll_no;
+            int no_of_students;
+            Console.WriteLine("enter no of stundents");
+            no_of_students = int.Parse(Console.ReadLine());
+            for(int i=0;i<no_of_students;i++)
             {
-                if (i == 5)
-                    continue;
-                Console.WriteLine(i);
+                roll_no = i;
+                Console.WriteLine("roll no :"+roll_no);
+                Console.WriteLine("enter name");
+                name=   Console.ReadLine();
+                Console.WriteLine("enter marks");
+                marks = double.Parse(Console.ReadLine());
+                Console.WriteLine("the student "+name+" has got "+marks);
             }
             Console.ReadKey();
         }
