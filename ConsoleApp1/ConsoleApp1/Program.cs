@@ -11,6 +11,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             student s1 = new student();
+            student.country = "Pakistan";
 
             s1.input();
 

@@ -11,6 +11,7 @@ namespace ConsoleApp1
         public string color { get; set; }
         public string make { get; set; }
         public int model { get; set; }
+        public static string country { get; set; }
       public student()
         {
             color = "0";
@@ -25,7 +26,7 @@ namespace ConsoleApp1
             this.make= Console.ReadLine();
             Console.WriteLine("enter model");
             this.model = int.Parse(Console.ReadLine());
-
+          
         }
         public student(string color,string Make,int Model)
         {
@@ -39,6 +40,7 @@ namespace ConsoleApp1
             Console.WriteLine("the color is "+ this.color);
             Console.WriteLine("the make no is "+this.make);
             Console.WriteLine("the model are "+this.model);
+            Console.WriteLine("the country is "+country);
         }
         public void start()
         {
