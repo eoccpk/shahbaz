@@ -11,16 +11,28 @@ namespace ConsoleApp1
         public string color { get; set; }
         public string make { get; set; }
         public int model { get; set; }
-      
+      public student()
+        {
+            color = "0";
+            make = "0";
+            model = 0;
+        }
         public void input()
         {
-            Console.WriteLine("enter color");
-            this.color=Console.ReadLine();
-            Console.WriteLine("enter name");
-            this.make=Console.ReadLine();
-            Console.WriteLine("enetr model");
-            this.model=int.Parse(Console.ReadLine());
+            Console.WriteLine("enter color"); ;
+            this.color = Console.ReadLine();
+            Console.WriteLine("enter MAKE");
+            this.make= Console.ReadLine();
+            Console.WriteLine("enter model");
+            this.model = int.Parse(Console.ReadLine());
 
+        }
+        public student(string color,string Make,int Model)
+        {
+            this.color = color;
+            this.make = Make;
+               this.model = Model;
+            
         }
         public void show()
         {

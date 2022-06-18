@@ -11,7 +11,9 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             student s1 = new student();
+
             s1.input();
+
             s1.show();
             s1.start();
             s1.stop();
