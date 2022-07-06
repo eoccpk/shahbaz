@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="storemodel1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="storemodel1StoreContainer">
+    <EntitySet Name="customers" EntityType="storemodel1.Store.customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="orders" EntityType="storemodel1.Store.orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="bills" EntityType="storemodel1.Store.bills" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="products" EntityType="storemodel1.Store.products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="orderproduct" EntityType="storemodel1.Store.orderproduct" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="customerorder" Association="storemodel1.Store.customerorder">
+      <End Role="customer" EntitySet="customers" />
+      <End Role="order" EntitySet="orders" />
+    </AssociationSet>
+    <AssociationSet Name="orderbill" Association="storemodel1.Store.orderbill">
+      <End Role="order" EntitySet="orders" />
+      <End Role="bill" EntitySet="bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderproduct_order" Association="storemodel1.Store.FK_orderproduct_order">
+      <End Role="order" EntitySet="orders" />
+      <End Role="orderproduct" EntitySet="orderproduct" />
+    </AssociationSet>
+    <AssociationSet Name="FK_orderproduct_product" Association="storemodel1.Store.FK_orderproduct_product">
+      <End Role="product" EntitySet="products" />
+      <End Role="orderproduct" EntitySet="orderproduct" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customername" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="balance" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ordertime" Type="datetime" Nullable="false" />
+    <Property Name="isconfirmed" Type="bit" Nullable="false" />
+    <Property Name="isdispatched" Type="bit" Nullable="false" />
+    <Property Name="dispatchtime" Type="datetime" Nullable="false" />
+    <Property Name="isdelievered" Type="bit" Nullable="false" />
+    <Property Name="delieverytime" Type="datetime" Nullable="false" />
+    <Property Name="customerId" Type="int" Nullable="false" />
+    <Property Name="bill_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bills">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="generationtime" Type="datetime" Nullable="false" />
+    <Property Name="ispaid" Type="bit" Nullable="false" />
+    <Property Name="amount" Type="float" Nullable="false" />
+    <Property Name="billpayment" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="products">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="productname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="code" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="catagory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="unitprice" Type="int" Nullable="false" />
+    <Property Name="catagory2" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="image" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="seller" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ratting" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="orderproduct">
+    <Key>
+      <PropertyRef Name="orders_Id" />
+      <PropertyRef Name="products_Id" />
+    </Key>
+    <Property Name="orders_Id" Type="int" Nullable="false" />
+    <Property Name="products_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="customerorder">
+    <End Role="customer" Type="storemodel1.Store.customers" Multiplicity="1" />
+    <End Role="order" Type="storemodel1.Store.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="orderbill">
+    <End Role="order" Type="storemodel1.Store.orders" Multiplicity="*" />
+    <End Role="bill" Type="storemodel1.Store.bills" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="bill">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="order">
+        <PropertyRef Name="bill_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderproduct_order">
+    <End Role="order" Type="storemodel1.Store.orders" Multiplicity="1" />
+    <End Role="orderproduct" Type="storemodel1.Store.orderproduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="orderproduct">
+        <PropertyRef Name="orders_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_orderproduct_product">
+    <End Role="orderproduct" Type="storemodel1.Store.orderproduct" Multiplicity="*" />
+    <End Role="product" Type="storemodel1.Store.products" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="orderproduct">
+        <PropertyRef Name="products_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="storemodel1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="storemodel1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="customers" EntityType="storemodel1.customer" />
+          <EntitySet Name="orders" EntityType="storemodel1.order" />
+          <AssociationSet Name="customerorder" Association="storemodel1.customerorder">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="order" EntitySet="orders" />
+          </AssociationSet>
+          <EntitySet Name="bills" EntityType="storemodel1.bill" />
+          <AssociationSet Name="orderbill" Association="storemodel1.orderbill">
+            <End Role="order" EntitySet="orders" />
+            <End Role="bill" EntitySet="bills" />
+          </AssociationSet>
+          <EntitySet Name="products" EntityType="storemodel1.product" />
+          <AssociationSet Name="orderproduct" Association="storemodel1.orderproduct">
+            <End Role="order" EntitySet="orders" />
+            <End Role="product" EntitySet="products" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customername" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="phone" Type="String" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="true" />
+          <Property Name="balance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="storemodel1.customerorder" FromRole="customer" ToRole="order" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ordertime" Type="DateTime" Nullable="false" />
+          <Property Name="isconfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="isdispatched" Type="Boolean" Nullable="false" />
+          <Property Name="dispatchtime" Type="DateTime" Nullable="false" />
+          <Property Name="isdelievered" Type="Boolean" Nullable="false" />
+          <Property Name="delieverytime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="storemodel1.customerorder" FromRole="order" ToRole="customer" />
+          <Property Name="customerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bill" Relationship="storemodel1.orderbill" FromRole="order" ToRole="bill" />
+          <NavigationProperty Name="products" Relationship="storemodel1.orderproduct" FromRole="order" ToRole="product" />
+        </EntityType>
+        <Association Name="customerorder">
+          <End Type="storemodel1.customer" Role="customer" Multiplicity="1" />
+          <End Type="storemodel1.order" Role="order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="order">
+              <PropertyRef Name="customerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="bill">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="generationtime" Type="DateTime" Nullable="false" />
+          <Property Name="ispaid" Type="Boolean" Nullable="false" />
+          <Property Name="amount" Type="Double" Nullable="false" />
+          <Property Name="billpayment" Type="String" Nullable="false" />
+          <NavigationProperty Name="order" Relationship="storemodel1.orderbill" FromRole="bill" ToRole="order" />
+        </EntityType>
+        <Association Name="orderbill">
+          <End Type="storemodel1.order" Role="order" Multiplicity="1" />
+          <End Type="storemodel1.bill" Role="bill" Multiplicity="1" />
+        </Association>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="productname" Type="String" Nullable="false" />
+          <Property Name="code" Type="String" Nullable="false" />
+          <Property Name="catagory" Type="String" Nullable="false" />
+          <Property Name="unitprice" Type="Int32" Nullable="false" />
+          <Property Name="catagory2" Type="String" Nullable="false" />
+          <Property Name="image" Type="String" Nullable="false" />
+          <Property Name="seller" Type="String" Nullable="false" />
+          <Property Name="ratting" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="orders" Relationship="storemodel1.orderproduct" FromRole="product" ToRole="order" />
+        </EntityType>
+        <Association Name="orderproduct">
+          <End Type="storemodel1.order" Role="order" Multiplicity="*" />
+          <End Type="storemodel1.product" Role="product" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="storemodel1StoreContainer" CdmEntityContainer="storemodel1Container">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="IsTypeOf(storemodel1.customer)">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="customername" ColumnName="customername" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="balance" ColumnName="balance" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="IsTypeOf(storemodel1.order)">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ordertime" ColumnName="ordertime" />
+          <ScalarProperty Name="isconfirmed" ColumnName="isconfirmed" />
+          <ScalarProperty Name="isdispatched" ColumnName="isdispatched" />
+          <ScalarProperty Name="dispatchtime" ColumnName="dispatchtime" />
+          <ScalarProperty Name="isdelievered" ColumnName="isdelievered" />
+          <ScalarProperty Name="delieverytime" ColumnName="delieverytime" />
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bills">
+      <EntityTypeMapping TypeName="IsTypeOf(storemodel1.bill)">
+        <MappingFragment StoreEntitySet="bills">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="generationtime" ColumnName="generationtime" />
+          <ScalarProperty Name="ispaid" ColumnName="ispaid" />
+          <ScalarProperty Name="amount" ColumnName="amount" />
+          <ScalarProperty Name="billpayment" ColumnName="billpayment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="products">
+      <EntityTypeMapping TypeName="IsTypeOf(storemodel1.product)">
+        <MappingFragment StoreEntitySet="products">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="productname" ColumnName="productname" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="catagory" ColumnName="catagory" />
+          <ScalarProperty Name="unitprice" ColumnName="unitprice" />
+          <ScalarProperty Name="catagory2" ColumnName="catagory2" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="seller" ColumnName="seller" />
+          <ScalarProperty Name="ratting" ColumnName="ratting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="orderbill" TypeName="storemodel1.orderbill" StoreEntitySet="orders">
+      <EndProperty Name="bill">
+        <ScalarProperty Name="Id" ColumnName="bill_Id" />
+      </EndProperty>
+      <EndProperty Name="order">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="orderproduct" TypeName="storemodel1.orderproduct" StoreEntitySet="orderproduct">
+      <EndProperty Name="order">
+        <ScalarProperty Name="Id" ColumnName="orders_Id" />
+      </EndProperty>
+      <EndProperty Name="product">
+        <ScalarProperty Name="Id" ColumnName="products_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
