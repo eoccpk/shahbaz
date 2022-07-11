@@ -15,9 +15,9 @@
         <EntityTypeShape EntityType="Model1.carfeatures" Width="1.5" PointX="7.375" PointY="4.375" />
         <EntityTypeShape EntityType="Model1.motorcycle" Width="1.5" PointX="10.375" PointY="3.75" />
         <EntityTypeShape EntityType="Model1.Motorcyclefeatures" Width="1.5" PointX="12.375" PointY="6" />
-        <EntityTypeShape EntityType="Model1.Inspectionreport" Width="1.5" PointX="13.25" PointY="0.625" />
-        <EntityTypeShape EntityType="Model1.useradds" Width="1.5" PointX="16.25" PointY="2.25" />
-        <EntityTypeShape EntityType="Model1.usermessages" Width="1.5" PointX="16.125" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.Inspectionreport" Width="1.5" PointX="13.25" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.useradds" Width="1.5" PointX="16.25" PointY="4.625" />
+        <EntityTypeShape EntityType="Model1.usermessages" Width="1.5" PointX="18.5" PointY="0.75" />
         <AssociationConnector Association="Model1.useruserprofile" />
         <AssociationConnector Association="Model1.userprofileseller" />
         <AssociationConnector Association="Model1.userbuyer" />
@@ -28,10 +28,43 @@
         <AssociationConnector Association="Model1.motorcycleMotorcyclefeatures" />
         <AssociationConnector Association="Model1.carInspectionreport" />
         <AssociationConnector Association="Model1.motorcycleInspectionreport" />
-        <AssociationConnector Association="Model1.userprofileuseradds" />
+        <AssociationConnector Association="Model1.userprofileuseradds" ManuallyRouted="true" >
+          <ConnectorPoint PointX="5.25" PointY="1.2186210468749992" />
+          <ConnectorPoint PointX="6.375" PointY="1.2186210468749992" />
+          <ConnectorPoint PointX="6.375" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="6.6822891666666671" PointY="3.6661589755490414" />
+          <ConnectorPoint PointX="6.8489558333333331" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="6.885416666666667" PointY="3.6661589755490405" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="9.1249998786176238" PointY="3.6661589755490414" />
+          <ConnectorPoint PointX="9.2916665452842917" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="9.8541691666666669" PointY="3.6661589755490414" />
+          <ConnectorPoint PointX="10.020835833333335" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="12.58403736244731" PointY="3.6661589755490414" />
+          <ConnectorPoint PointX="12.750704029113978" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="14.322919166666667" PointY="3.6661589755490414" />
+          <ConnectorPoint PointX="14.489585833333335" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="16.510414166666667" PointY="3.6661589755490414" />
+          <ConnectorPoint PointX="16.677080833333331" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="17" PointY="3.6661589755490418" />
+          <ConnectorPoint PointX="17" PointY="4.625" />
+        </AssociationConnector>
         <AssociationConnector Association="Model1.useraddsusermessages" />
         <AssociationConnector Association="Model1.vehiclecar" />
         <AssociationConnector Association="Model1.vehiclemotorcycle" />
+        <AssociationConnector Association="Model1.buyeruseradds" ManuallyRouted="true" >
+          <ConnectorPoint PointX="11" PointY="1.9997460937499998" />
+          <ConnectorPoint PointX="12.667370695780644" PointY="1.9997460937499998" />
+          <ConnectorPoint PointX="12.667370695780644" PointY="4.0427073403075333" />
+          <ConnectorPoint PointX="14.322919166666667" PointY="4.0427073403075324" />
+          <ConnectorPoint PointX="14.489585833333335" PointY="4.0427073403075333" />
+          <ConnectorPoint PointX="16.510414166666667" PointY="4.0427073403075324" />
+          <ConnectorPoint PointX="16.677080833333331" PointY="4.0427073403075333" />
+          <ConnectorPoint PointX="16.916666666666668" PointY="4.0427073403075324" />
+          <ConnectorPoint PointX="17.083333333333332" PointY="4.0427073403075333" />
+          <ConnectorPoint PointX="17.406252000000002" PointY="4.0427073403075333" />
+          <ConnectorPoint PointX="17.406252000000002" PointY="4.625" />
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

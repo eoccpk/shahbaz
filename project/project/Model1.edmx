@@ -82,6 +82,10 @@
             <End Role="vehicle" EntitySet="vehicles" />
             <End Role="motorcycle" EntitySet="motorcycles" />
           </AssociationSet>
+          <AssociationSet Name="buyeruseradds" Association="Model1.buyeruseradds">
+            <End Role="buyer" EntitySet="buyers" />
+            <End Role="useradds" EntitySet="useradds" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="user">
           <Key>
@@ -135,6 +139,7 @@
           <Property Name="location" Type="String" Nullable="false" />
           <NavigationProperty Name="user" Relationship="Model1.userbuyer" FromRole="buyer" ToRole="user" />
           <NavigationProperty Name="vehicles" Relationship="Model1.buyervehicle" FromRole="buyer" ToRole="vehicle" />
+          <NavigationProperty Name="useradd" Relationship="Model1.buyeruseradds" FromRole="buyer" ToRole="useradds" />
         </EntityType>
         <EntityType Name="sellercomments">
           <Key>
@@ -243,6 +248,9 @@
           <NavigationProperty Name="userprofile" Relationship="Model1.userprofileuseradds" FromRole="useradds" ToRole="userprofile" />
           <Property Name="userprofileId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="usermessages" Relationship="Model1.useraddsusermessages" FromRole="useradds" ToRole="usermessages" />
+          <Property Name="addesp" Type="String" Nullable="false" />
+          <NavigationProperty Name="buyer" Relationship="Model1.buyeruseradds" FromRole="useradds" ToRole="buyer" />
+          <Property Name="rating" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="usermessages">
           <Key>
@@ -364,6 +372,10 @@
         <Association Name="vehiclemotorcycle">
           <End Type="Model1.vehicle" Role="vehicle" Multiplicity="1" />
           <End Type="Model1.motorcycle" Role="motorcycle" Multiplicity="1" />
+        </Association>
+        <Association Name="buyeruseradds">
+          <End Type="Model1.buyer" Role="buyer" Multiplicity="1" />
+          <End Type="Model1.useradds" Role="useradds" Multiplicity="1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
