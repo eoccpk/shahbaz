@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="users" EntityType="Model1.user" />
+          <EntitySet Name="userprofiles" EntityType="Model1.userprofile" />
+          <EntitySet Name="sellers" EntityType="Model1.seller" />
+          <EntitySet Name="buyers" EntityType="Model1.buyer" />
+          <EntitySet Name="sellercomments" EntityType="Model1.sellercomments" />
+          <EntitySet Name="vehicles" EntityType="Model1.vehicle" />
+          <EntitySet Name="cars" EntityType="Model1.car" />
+          <EntitySet Name="carfeatures" EntityType="Model1.carfeatures" />
+          <EntitySet Name="motorcycles" EntityType="Model1.motorcycle" />
+          <EntitySet Name="Motorcyclefeatures" EntityType="Model1.Motorcyclefeatures" />
+          <EntitySet Name="Inspectionreports" EntityType="Model1.Inspectionreport" />
+          <EntitySet Name="useradds" EntityType="Model1.useradds" />
+          <EntitySet Name="usermessages" EntityType="Model1.usermessages" />
+          <AssociationSet Name="useruserprofile" Association="Model1.useruserprofile">
+            <End Role="user" EntitySet="users" />
+            <End Role="userprofile" EntitySet="userprofiles" />
+          </AssociationSet>
+          <AssociationSet Name="userprofileseller" Association="Model1.userprofileseller">
+            <End Role="userprofile" EntitySet="userprofiles" />
+            <End Role="seller" EntitySet="sellers" />
+          </AssociationSet>
+          <AssociationSet Name="userbuyer" Association="Model1.userbuyer">
+            <End Role="user" EntitySet="users" />
+            <End Role="buyer" EntitySet="buyers" />
+          </AssociationSet>
+          <AssociationSet Name="sellersellercomments" Association="Model1.sellersellercomments">
+            <End Role="seller" EntitySet="sellers" />
+            <End Role="sellercomments" EntitySet="sellercomments" />
+          </AssociationSet>
+          <AssociationSet Name="sellervehicle" Association="Model1.sellervehicle">
+            <End Role="seller" EntitySet="sellers" />
+            <End Role="vehicle" EntitySet="vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="buyervehicle" Association="Model1.buyervehicle">
+            <End Role="buyer" EntitySet="buyers" />
+            <End Role="vehicle" EntitySet="vehicles" />
+          </AssociationSet>
+          <AssociationSet Name="carcarfeatures" Association="Model1.carcarfeatures">
+            <End Role="car" EntitySet="cars" />
+            <End Role="carfeatures" EntitySet="carfeatures" />
+          </AssociationSet>
+          <AssociationSet Name="motorcycleMotorcyclefeatures" Association="Model1.motorcycleMotorcyclefeatures">
+            <End Role="motorcycle" EntitySet="motorcycles" />
+            <End Role="Motorcyclefeatures" EntitySet="Motorcyclefeatures" />
+          </AssociationSet>
+          <AssociationSet Name="carInspectionreport" Association="Model1.carInspectionreport">
+            <End Role="car" EntitySet="cars" />
+            <End Role="Inspectionreport" EntitySet="Inspectionreports" />
+          </AssociationSet>
+          <AssociationSet Name="motorcycleInspectionreport" Association="Model1.motorcycleInspectionreport">
+            <End Role="motorcycle" EntitySet="motorcycles" />
+            <End Role="Inspectionreport" EntitySet="Inspectionreports" />
+          </AssociationSet>
+          <AssociationSet Name="userprofileuseradds" Association="Model1.userprofileuseradds">
+            <End Role="userprofile" EntitySet="userprofiles" />
+            <End Role="useradds" EntitySet="useradds" />
+          </AssociationSet>
+          <AssociationSet Name="useraddsusermessages" Association="Model1.useraddsusermessages">
+            <End Role="useradds" EntitySet="useradds" />
+            <End Role="usermessages" EntitySet="usermessages" />
+          </AssociationSet>
+          <AssociationSet Name="vehiclecar" Association="Model1.vehiclecar">
+            <End Role="vehicle" EntitySet="vehicles" />
+            <End Role="car" EntitySet="cars" />
+          </AssociationSet>
+          <AssociationSet Name="vehiclemotorcycle" Association="Model1.vehiclemotorcycle">
+            <End Role="vehicle" EntitySet="vehicles" />
+            <End Role="motorcycle" EntitySet="motorcycles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="fullname" Type="String" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" />
+          <NavigationProperty Name="userprofile" Relationship="Model1.useruserprofile" FromRole="user" ToRole="userprofile" />
+          <NavigationProperty Name="buyer" Relationship="Model1.userbuyer" FromRole="user" ToRole="buyer" />
+        </EntityType>
+        <EntityType Name="userprofile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gender" Type="String" Nullable="false" />
+          <Property Name="dob" Type="String" Nullable="false" />
+          <Property Name="username" Type="String" Nullable="false" />
+          <Property Name="city" Type="String" Nullable="false" />
+          <Property Name="country" Type="String" Nullable="false" />
+          <Property Name="phoneno" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Model1.useruserprofile" FromRole="userprofile" ToRole="user" />
+          <NavigationProperty Name="seller" Relationship="Model1.userprofileseller" FromRole="userprofile" ToRole="seller" />
+          <NavigationProperty Name="useradds" Relationship="Model1.userprofileuseradds" FromRole="userprofile" ToRole="useradds" />
+        </EntityType>
+        <EntityType Name="seller">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vehicletype" Type="String" Nullable="false" />
+          <Property Name="make" Type="String" Nullable="false" />
+          <Property Name="model" Type="String" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="location" Type="String" Nullable="false" />
+          <NavigationProperty Name="userprofile" Relationship="Model1.userprofileseller" FromRole="seller" ToRole="userprofile" />
+          <NavigationProperty Name="sellercomments" Relationship="Model1.sellersellercomments" FromRole="seller" ToRole="sellercomments" />
+          <NavigationProperty Name="vehicles" Relationship="Model1.sellervehicle" FromRole="seller" ToRole="vehicle" />
+        </EntityType>
+        <EntityType Name="buyer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="make" Type="String" Nullable="false" />
+          <Property Name="model" Type="String" Nullable="false" />
+          <Property Name="pricerange" Type="Int32" Nullable="false" />
+          <Property Name="milagerange" Type="Int32" Nullable="false" />
+          <Property Name="location" Type="String" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Model1.userbuyer" FromRole="buyer" ToRole="user" />
+          <NavigationProperty Name="vehicles" Relationship="Model1.buyervehicle" FromRole="buyer" ToRole="vehicle" />
+        </EntityType>
+        <EntityType Name="sellercomments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="comments" Type="String" Nullable="false" />
+          <NavigationProperty Name="seller" Relationship="Model1.sellersellercomments" FromRole="sellercomments" ToRole="seller" />
+          <Property Name="sellerId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vehicle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="isnewused" Type="Boolean" Nullable="false" />
+          <Property Name="twowheeler" Type="String" Nullable="false" />
+          <Property Name="fourwheeler" Type="String" Nullable="false" />
+          <NavigationProperty Name="seller" Relationship="Model1.sellervehicle" FromRole="vehicle" ToRole="seller" />
+          <Property Name="sellerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="buyer" Relationship="Model1.buyervehicle" FromRole="vehicle" ToRole="buyer" />
+          <Property Name="buyerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="car" Relationship="Model1.vehiclecar" FromRole="vehicle" ToRole="car" />
+          <NavigationProperty Name="motorcycle" Relationship="Model1.vehiclemotorcycle" FromRole="vehicle" ToRole="motorcycle" />
+        </EntityType>
+        <EntityType Name="car">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="make" Type="String" Nullable="false" />
+          <Property Name="model" Type="Int32" Nullable="false" />
+          <Property Name="enginecapacity" Type="Int32" Nullable="false" />
+          <Property Name="color" Type="String" Nullable="false" />
+          <Property Name="milage" Type="Int32" Nullable="false" />
+          <Property Name="registration" Type="String" Nullable="false" />
+          <Property Name="price" Type="String" Nullable="false" />
+          <Property Name="images" Type="String" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="carfeatures" Relationship="Model1.carcarfeatures" FromRole="car" ToRole="carfeatures" />
+          <NavigationProperty Name="Inspectionreport" Relationship="Model1.carInspectionreport" FromRole="car" ToRole="Inspectionreport" />
+          <NavigationProperty Name="vehicle" Relationship="Model1.vehiclecar" FromRole="car" ToRole="vehicle" />
+        </EntityType>
+        <EntityType Name="carfeatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="airbags" Type="String" Nullable="false" />
+          <Property Name="powersteering" Type="String" Nullable="false" />
+          <Property Name="powerlocks" Type="String" Nullable="false" />
+          <Property Name="abs" Type="String" Nullable="false" />
+          <Property Name="centallocking" Type="String" Nullable="false" />
+          <NavigationProperty Name="car" Relationship="Model1.carcarfeatures" FromRole="carfeatures" ToRole="car" />
+          <Property Name="carId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="motorcycle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="make" Type="String" Nullable="false" />
+          <Property Name="model" Type="String" Nullable="false" />
+          <Property Name="enginecapacity" Type="String" Nullable="false" />
+          <Property Name="year" Type="String" Nullable="false" />
+          <Property Name="price" Type="String" Nullable="false" />
+          <Property Name="vehicleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Motorcyclefeatures" Relationship="Model1.motorcycleMotorcyclefeatures" FromRole="motorcycle" ToRole="Motorcyclefeatures" />
+          <NavigationProperty Name="Inspectionreport" Relationship="Model1.motorcycleInspectionreport" FromRole="motorcycle" ToRole="Inspectionreport" />
+          <NavigationProperty Name="vehicle" Relationship="Model1.vehiclemotorcycle" FromRole="motorcycle" ToRole="vehicle" />
+        </EntityType>
+        <EntityType Name="Motorcyclefeatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="antitheiftlock" Type="String" Nullable="false" />
+          <Property Name="discbrake" Type="String" Nullable="false" />
+          <Property Name="ledlight" Type="String" Nullable="false" />
+          <Property Name="windshield" Type="String" Nullable="false" />
+          <NavigationProperty Name="motorcycle" Relationship="Model1.motorcycleMotorcyclefeatures" FromRole="Motorcyclefeatures" ToRole="motorcycle" />
+          <Property Name="motorcycleId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inspectionreport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="engineclutch" Type="String" Nullable="false" />
+          <Property Name="body" Type="String" Nullable="false" />
+          <Property Name="tyres" Type="String" Nullable="false" />
+          <Property Name="acheater" Type="String" Nullable="false" />
+          <Property Name="Property1" Type="String" Nullable="false" />
+          <Property Name="electronic" Type="String" Nullable="false" />
+          <NavigationProperty Name="car" Relationship="Model1.carInspectionreport" FromRole="Inspectionreport" ToRole="car" />
+          <NavigationProperty Name="motorcycle" Relationship="Model1.motorcycleInspectionreport" FromRole="Inspectionreport" ToRole="motorcycle" />
+        </EntityType>
+        <EntityType Name="useradds">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="edit" Type="String" Nullable="false" />
+          <Property Name="activate" Type="String" Nullable="false" />
+          <Property Name="deactivate" Type="String" Nullable="false" />
+          <NavigationProperty Name="userprofile" Relationship="Model1.userprofileuseradds" FromRole="useradds" ToRole="userprofile" />
+          <Property Name="userprofileId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="usermessages" Relationship="Model1.useraddsusermessages" FromRole="useradds" ToRole="usermessages" />
+        </EntityType>
+        <EntityType Name="usermessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="message" Type="String" Nullable="false" />
+          <NavigationProperty Name="useradd" Relationship="Model1.useraddsusermessages" FromRole="usermessages" ToRole="useradds" />
+          <Property Name="useraddsId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="useruserprofile">
+          <End Type="Model1.user" Role="user" Multiplicity="1" />
+          <End Type="Model1.userprofile" Role="userprofile" Multiplicity="1" />
+        </Association>
+        <Association Name="userprofileseller">
+          <End Type="Model1.userprofile" Role="userprofile" Multiplicity="1" />
+          <End Type="Model1.seller" Role="seller" Multiplicity="1" />
+        </Association>
+        <Association Name="userbuyer">
+          <End Type="Model1.user" Role="user" Multiplicity="1" />
+          <End Type="Model1.buyer" Role="buyer" Multiplicity="1" />
+        </Association>
+        <Association Name="sellersellercomments">
+          <End Type="Model1.seller" Role="seller" Multiplicity="1" />
+          <End Type="Model1.sellercomments" Role="sellercomments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seller">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="sellercomments">
+              <PropertyRef Name="sellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="sellervehicle">
+          <End Type="Model1.seller" Role="seller" Multiplicity="1" />
+          <End Type="Model1.vehicle" Role="vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="seller">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="vehicle">
+              <PropertyRef Name="sellerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="buyervehicle">
+          <End Type="Model1.buyer" Role="buyer" Multiplicity="1" />
+          <End Type="Model1.vehicle" Role="vehicle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="buyer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="vehicle">
+              <PropertyRef Name="buyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="carcarfeatures">
+          <End Type="Model1.car" Role="car" Multiplicity="1" />
+          <End Type="Model1.carfeatures" Role="carfeatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="car">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="carfeatures">
+              <PropertyRef Name="carId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="motorcycleMotorcyclefeatures">
+          <End Type="Model1.motorcycle" Role="motorcycle" Multiplicity="1" />
+          <End Type="Model1.Motorcyclefeatures" Role="Motorcyclefeatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="motorcycle">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Motorcyclefeatures">
+              <PropertyRef Name="motorcycleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="carInspectionreport">
+          <End Type="Model1.car" Role="car" Multiplicity="1" />
+          <End Type="Model1.Inspectionreport" Role="Inspectionreport" Multiplicity="1" />
+        </Association>
+        <Association Name="motorcycleInspectionreport">
+          <End Type="Model1.motorcycle" Role="motorcycle" Multiplicity="1" />
+          <End Type="Model1.Inspectionreport" Role="Inspectionreport" Multiplicity="1" />
+        </Association>
+        <Association Name="userprofileuseradds">
+          <End Type="Model1.userprofile" Role="userprofile" Multiplicity="1" />
+          <End Type="Model1.useradds" Role="useradds" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="userprofile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="useradds">
+              <PropertyRef Name="userprofileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="useraddsusermessages">
+          <End Type="Model1.useradds" Role="useradds" Multiplicity="1" />
+          <End Type="Model1.usermessages" Role="usermessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="useradds">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="usermessages">
+              <PropertyRef Name="useraddsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="vehiclecar">
+          <End Type="Model1.vehicle" Role="vehicle" Multiplicity="1" />
+          <End Type="Model1.car" Role="car" Multiplicity="1" />
+        </Association>
+        <Association Name="vehiclemotorcycle">
+          <End Type="Model1.vehicle" Role="vehicle" Multiplicity="1" />
+          <End Type="Model1.motorcycle" Role="motorcycle" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
