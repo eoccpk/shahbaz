@@ -12,7 +12,7 @@
         <AssociationConnector Association="Model1.orderorderproduct" />
         <EntityTypeShape EntityType="Model1.product" Width="1.5" PointX="9.875" PointY="0.5" />
         <AssociationConnector Association="Model1.productorderproduct" />
-        <EntityTypeShape EntityType="Model1.bill" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="Model1.bill" Width="1.5" PointX="2.375" PointY="3.75" />
         <AssociationConnector Association="Model1.orderbill" />
       </Diagram>
     </edmx:Diagrams>

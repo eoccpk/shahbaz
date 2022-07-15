@@ -62,7 +62,7 @@
           <Property Name="customerId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="orderproducts" Relationship="Model1.orderorderproduct" FromRole="order" ToRole="orderproduct" />
           <Property Name="productId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="bills" Relationship="Model1.orderbill" FromRole="order" ToRole="bill" />
+          <NavigationProperty Name="bill" Relationship="Model1.orderbill" FromRole="order" ToRole="bill" />
         </EntityType>
         <Association Name="customerorder">
           <End Type="Model1.customer" Role="customer" Multiplicity="1" />
@@ -135,20 +135,12 @@
           <Property Name="ispaid" Type="Boolean" Nullable="false" />
           <Property Name="amount" Type="Int32" Nullable="false" />
           <Property Name="paymentmethod" Type="String" Nullable="false" />
-          <NavigationProperty Name="order" Relationship="Model1.orderbill" FromRole="bill" ToRole="order" />
           <Property Name="orderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="order" Relationship="Model1.orderbill" FromRole="bill" ToRole="order" />
         </EntityType>
         <Association Name="orderbill">
           <End Type="Model1.order" Role="order" Multiplicity="1" />
-          <End Type="Model1.bill" Role="bill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="order">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="bill">
-              <PropertyRef Name="orderId" />
-            </Dependent>
-          </ReferentialConstraint>
+          <End Type="Model1.bill" Role="bill" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
