@@ -34,6 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.shahbaz = new System.Windows.Forms.TextBox();
             this.username = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -98,6 +100,16 @@
             this.username.Size = new System.Drawing.Size(151, 22);
             this.username.TabIndex = 6;
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(226, 80);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(287, 233);
+            this.dataGridView1.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -105,6 +117,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(699, 423);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.username);
             this.Controls.Add(this.shahbaz);
             this.Controls.Add(this.button1);
@@ -116,6 +129,9 @@
             this.Name = "Form1";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = " ";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Click += new System.EventHandler(this.Form1_Click);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -129,6 +145,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox shahbaz;
         private System.Windows.Forms.TextBox username;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 
