@@ -1,0 +1,49 @@
+﻿@page
+@model e_commerce.Pages.products.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>products</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.code)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.catagory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.catagory)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.seller)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.seller)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.relesase)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.relesase)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.products?.id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

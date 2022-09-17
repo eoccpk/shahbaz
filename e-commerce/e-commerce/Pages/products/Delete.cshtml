@@ -1,0 +1,52 @@
+﻿@page
+@model e_commerce.Pages.products.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>products</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.code)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.code)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.catagory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.catagory)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.seller)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.seller)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.products.relesase)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.products.relesase)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="products.id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
